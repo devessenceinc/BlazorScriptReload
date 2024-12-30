@@ -1,0 +1,15 @@
+.vs/
+bin/
+obj/
+*.user
+artifacts/
+msbuild.binlog
+.vscode/
+*.binlog
+*.nupkg
+*.zip
+
+*.idea
+_ReSharper.Caches
+.DS_Store
+

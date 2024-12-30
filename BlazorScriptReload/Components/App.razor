@@ -1,0 +1,28 @@
+﻿@inject NavigationManager NavigationManager
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet" href="@Assets["lib/bootstrap/dist/css/bootstrap.min.css"]" />
+    <link rel="stylesheet" href="@Assets["app.css"]" />
+    <link rel="stylesheet" href="@Assets["BlazorScriptReload.styles.css"]" />
+    <ImportMap />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <HeadOutlet />
+    <script>alert("Shared Inline Script - App.razor");</script>
+    <script data-reload="true">alert("Shared Inline Script - Reload Enabled On Navigation - App.razor");</script>
+</head>
+
+<body>
+    <Routes />
+    <script src="_framework/blazor.web.js"></script>
+    @if (NavigationManager.Uri.Contains("?reload=true"))
+    {
+        <page-script src="./reload.js"></page-script>
+    }
+</body>
+
+</html>

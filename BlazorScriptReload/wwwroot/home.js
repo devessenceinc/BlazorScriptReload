@@ -1,0 +1,1 @@
+﻿alert('External Script - Home.razor');
