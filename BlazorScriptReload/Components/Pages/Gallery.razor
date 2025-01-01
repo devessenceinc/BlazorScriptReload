@@ -1,0 +1,65 @@
+﻿@page "/gallery"
+
+<PageTitle>Gallery</PageTitle>
+
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha384-e3sbGkYzJZpi7OdZc2eUoj7saI8K/Qbn+kPTdWyUQloiKIc9HRH4RUWFVxTonzTg" crossorigin="anonymous"></script>
+<script src="gallery.js"></script>
+
+@if (_news == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <section class="row masonry-grid">
+        @foreach (var news in _news)
+        {
+            <article @key="news.NewsId" class="p-3 col-6 col-md-4">
+                <a class="text-decoration-none" href="@news.Url">
+                    <img class="mb-4 w-100 object-fit-cover" src="@news.CoverImageUrl" alt="@news.Title" />
+                    <h4 class="fs-4 text-primary fw-bold">@news.Title</h4>
+                    <p class="fw-light text-black">@news.Date.ToShortDateString()</p>
+                    <div class="fw-light text-black mb-3">@((MarkupString)news.Lead)</div>
+                    <div class="btn btn-link text-primary text-decoration-none ps-0">
+                        <span>READ NEWS</span>
+                    </div>
+                </a>
+            </article>
+        }
+    </section>
+}
+
+@code {
+    private List<News> _news = [];
+
+    protected override void OnInitialized()
+    {
+        Random random = new Random();
+
+        for (int i = 0; i < 10; i++)
+        {
+            int width = random.Next(200, 400);
+            int height = random.Next(200, 400);
+            _news.Add(new News
+                {
+                    NewsId = i,
+                    Title = $"News Title {i}",
+                    Lead = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc consectetur ultricies. Nullam nec purus nec nunc consectetur ultricies.",
+                    CoverImageUrl = $"https://picsum.photos/{width}/{height}",
+                    Date = DateTime.Now,
+                    Url = "https://www.example.com"
+                });
+        }
+    }
+
+    private class News
+    {
+        public int NewsId { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public string Lead { get; set; } = string.Empty;
+        public string CoverImageUrl { get; set; } = string.Empty;
+        public DateTime Date { get; set; } = DateTime.Now;
+        public string Url { get; set; } = string.Empty;
+    }
+}

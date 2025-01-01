@@ -10,4 +10,10 @@
     <PackageReference Include="BlazorPageScript" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Components\Pages\Gallery.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+  </ItemGroup>
+
 </Project>
