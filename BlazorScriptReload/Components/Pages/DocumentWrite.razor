@@ -1,0 +1,14 @@
+﻿@page "/documentwrite"
+
+<PageTitle>Document.Write</PageTitle>
+
+
+@* The following inline script will overwrite the entire document's content on an enhanced navigation as the document has already finished loading when the script is injected *@
+@* <p>Operating successfully for <script>document.write((new Date().getFullYear())-1850);</script> years as an independent...</p> *@
+
+
+@* The following inline script is safe because it manipulates a specific DOM element *@
+<p>Operating successfully for &gt;<span id="years"></span>&lt; years as an independent...</p>
+<script>document.getElementById("years").innerHTML = (new Date().getFullYear())-1850;</script>
+
+
