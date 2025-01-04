@@ -40,7 +40,7 @@ export function onUpdate() {
         if (!scriptInfoBySrc.has(key)) {
             // new script
             scriptInfoBySrc.add(key);
-            if (enhancedNavigation) {
+            if (enhancedNavigation && (!script.hasAttribute("data-reload") || script.getAttribute("data-reload") === "true")) {
                 reloadScript(script);
             }
         } else {

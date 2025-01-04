@@ -43,7 +43,7 @@ export function onUpdate() {
             // new script added
             scriptInfo = { timestamp: timestamp };
             scriptInfoBySrc.set(key, scriptInfo);
-            if (enhancedNavigation) {
+            if (enhancedNavigation && (!script.hasAttribute("data-reload") || script.getAttribute("data-reload") === "true")) {
                 reloadScript(script);
             }
         } else {
