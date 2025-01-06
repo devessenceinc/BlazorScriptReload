@@ -1,5 +1,7 @@
 /* 
-Copyright (c) 2024-2025 by Shaun Walker of Devessence Inc. (https://devessence.com)
+Blazor Script Reload
+Copyright (c) 2024-2025 
+by Shaun Walker of Devessence Inc. (https://devessence.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,22 +24,23 @@ SOFTWARE.
 
 const scriptInfoBySrc = new Set();
 
+// must be used in conjunction with BlazorPageScript (https://www.nuget.org/packages/BlazorPageScript)
 export function onUpdate() {
     let enhancedNavigation = scriptInfoBySrc.size !== 0;
 
     // iterate over all script elements in document
-    const scripts = document.getElementsByTagName("script");
+    const scripts = document.getElementsByTagName('script');
     for (const script of Array.from(scripts)) {
         let key = getKey(script);
         if (!scriptInfoBySrc.has(key)) {
             // new script
             scriptInfoBySrc.add(key);
-            if (enhancedNavigation && isValid(script) && (!script.hasAttribute("data-reload") || script.getAttribute("data-reload") === "true")) {
+            if (enhancedNavigation && isValid(script) && (!script.hasAttribute('data-reload') || script.getAttribute('data-reload') === 'true')) {
                 reloadScript(script);
             }
         } else {
             // existing script
-            if (script.hasAttribute("data-reload") && script.getAttribute("data-reload") === "true" && isValid(script)) {
+            if (script.hasAttribute('data-reload') && script.getAttribute('data-reload') === 'true' && isValid(script)) {
                 reloadScript(script);
             }
         }
@@ -53,8 +56,8 @@ function getKey(script) {
 }
 
 function isValid(script) {
-    if (script.innerHTML.includes("document.write(")) {
-        console.log(`Script using document.write() not supported by Blazor or Reload: ${script.innerHTML}`);
+    if (script.innerHTML.includes('document.write(')) {
+        console.log(`Script using document.write() not supported by Blazor Script Reload: ${script.innerHTML}`);
         return false;
     }
     return true;
@@ -65,16 +68,16 @@ function reloadScript(script) {
         replaceScript(script);
     } catch (error) {
         if (script.src) {
-            console.error(`Reload failed to load external script: ${script.src}`, error);
+            console.error(`Blazor Script Reload failed to load external script: ${script.src}`, error);
         } else {
-            console.error(`Reload failed to load inline script: ${script.innerHTML}`, error);
+            console.error(`Blazor Script Reload failed to load inline script: ${script.innerHTML}`, error);
         }
     }
 }
 
 function replaceScript(script) {
     return new Promise((resolve, reject) => {
-        var newScript = document.createElement("script");
+        var newScript = document.createElement('script');
 
         // replicate attributes and content
         for (let i = 0; i < script.attributes.length; i++) {
