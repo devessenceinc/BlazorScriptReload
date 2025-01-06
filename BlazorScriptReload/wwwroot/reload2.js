@@ -25,6 +25,7 @@ SOFTWARE.
 const scriptInfoBySrc = new Set();
 
 // must be used in conjunction with BlazorPageScript (https://www.nuget.org/packages/BlazorPageScript)
+// add <page-script src="./reload.js"></page-script> to bottom of page body in App.razor
 export function onUpdate() {
     let enhancedNavigation = scriptInfoBySrc.size !== 0;
 
