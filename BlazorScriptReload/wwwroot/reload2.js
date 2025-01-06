@@ -22,14 +22,6 @@ SOFTWARE.
 
 const scriptInfoBySrc = new Set();
 
-function getKey(script) {
-    if (script.hasAttribute("src") && script.src !== "") {
-        return script.src;
-    } else {
-        return script.innerHTML;
-    }
-}
-
 export function onUpdate() {
     let enhancedNavigation = scriptInfoBySrc.size !== 0;
 
@@ -40,16 +32,32 @@ export function onUpdate() {
         if (!scriptInfoBySrc.has(key)) {
             // new script
             scriptInfoBySrc.add(key);
-            if (enhancedNavigation && (!script.hasAttribute("data-reload") || script.getAttribute("data-reload") === "true")) {
+            if (enhancedNavigation && isValid(script) && (!script.hasAttribute("data-reload") || script.getAttribute("data-reload") === "true")) {
                 reloadScript(script);
             }
         } else {
             // existing script
-            if (script.hasAttribute("data-reload") && script.getAttribute("data-reload") === "true") {
+            if (script.hasAttribute("data-reload") && script.getAttribute("data-reload") === "true" && isValid(script)) {
                 reloadScript(script);
             }
         }
     }
+}
+
+function getKey(script) {
+    if (script.src) {
+        return script.src;
+    } else {
+        return script.innerHTML;
+    }
+}
+
+function isValid(script) {
+    if (script.innerHTML.includes("document.write(")) {
+        console.log(`Script using document.write() not reloaded: ${script.innerHTML}`);
+        return false;
+    }
+    return true;
 }
 
 function reloadScript(script) {
@@ -57,9 +65,9 @@ function reloadScript(script) {
         replaceScript(script);
     } catch (error) {
         if (script.hasAttribute("src") && script.src !== "") {
-            console.error("Failed to load external script: ${script.src}", error);
+            console.error(`Failed to load external script: ${script.src}`, error);
         } else {
-            console.error("Failed to load inline script: ${script.innerHtml}", error);
+            console.error(`Failed to load inline script: ${script.innerHTML}`, error);
         }
     }
 }
@@ -81,10 +89,10 @@ function replaceScript(script) {
         newScript.onload = () => resolve();
         newScript.onerror = (error) => reject(error);
 
-        // remove existing script
+        // remove existing script element
         script.remove();
 
-        // replace with new script to force reload in Blazor
+        // replace with new script element to force reload in Blazor
         document.head.appendChild(newScript);
     });
 }
