@@ -3,11 +3,11 @@
 <PageTitle>Document.Write</PageTitle>
 
 
-@* The following inline script will overwrite the entire document's content on an enhanced navigation as the document has already finished loading when the script is executed - therefore data-reload must be disabled *@
+@* The following inline script uses document.write which must be ignored by reload as it will overwrite the entire document's content on an enhanced navigation *@
 <p>Operating successfully for &gt;<script data-reload="true">document.write((new Date().getFullYear())-2000);</script>&lt; years as an independent...</p>
 
 
-@* The following inline script is safe because it manipulates a specific DOM element *@
+@* The following inline script manipulates a specific DOM element and is safe to reload *@
 <p>Operating successfully for &gt;<span id="years"></span>&lt; years as an independent...</p>
 <script data-reload="true">document.getElementById("years").innerHTML = (new Date().getFullYear())-2000;</script>
 

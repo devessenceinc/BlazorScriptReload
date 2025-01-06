@@ -25,7 +25,7 @@ const scriptInfoBySrc = new Set();
 export function onUpdate() {
     let enhancedNavigation = scriptInfoBySrc.size !== 0;
 
-    // iterate over all script elements in page
+    // iterate over all script elements in document
     const scripts = document.getElementsByTagName("script");
     for (const script of Array.from(scripts)) {
         let key = getKey(script);
@@ -54,7 +54,7 @@ function getKey(script) {
 
 function isValid(script) {
     if (script.innerHTML.includes("document.write(")) {
-        console.log(`Script using document.write() not reloaded: ${script.innerHTML}`);
+        console.log(`Script using document.write() not supported by Blazor or Reload: ${script.innerHTML}`);
         return false;
     }
     return true;
@@ -64,10 +64,10 @@ function reloadScript(script) {
     try {
         replaceScript(script);
     } catch (error) {
-        if (script.hasAttribute("src") && script.src !== "") {
-            console.error(`Failed to load external script: ${script.src}`, error);
+        if (script.src) {
+            console.error(`Reload failed to load external script: ${script.src}`, error);
         } else {
-            console.error(`Failed to load inline script: ${script.innerHTML}`, error);
+            console.error(`Reload failed to load inline script: ${script.innerHTML}`, error);
         }
     }
 }
