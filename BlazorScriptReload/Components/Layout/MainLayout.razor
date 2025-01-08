@@ -8,6 +8,8 @@
 
     <main>
         <div class="top-row px-4">
+            Use the button to enable or disable Blazor Script Reload &gt;&gt;
+
             @if (NavigationManager.Uri.Contains("?reload=true"))
             {
                 <a class="btn btn-primary" href="@NavigationManager.Uri.Replace("reload=true", "")">Disable Reload</a>

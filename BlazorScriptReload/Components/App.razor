@@ -21,7 +21,8 @@
     <script src="_framework/blazor.web.js"></script>
     @if (NavigationManager.Uri.Contains("?reload=true"))
     {
-        <page-script src="./reload2.js"></page-script>
+       @* <page-script src="./reload2.js"></page-script> *@
+       <script-reload></script-reload>
     }
 </body>
 
