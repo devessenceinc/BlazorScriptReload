@@ -52,3 +52,7 @@ console.log('External Script');
 ```
 
 Take a look at the `samples` folder in this repository for more usage examples.
+
+## Notes
+
+This solution does not actually "load" JavaScript - it simply replaces the ```script``` element in the DOM and relies on the browser to load the script using its standard behavior (ie. taking into consideration caching, etc...)
