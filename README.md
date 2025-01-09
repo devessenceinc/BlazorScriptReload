@@ -42,7 +42,7 @@ _Example.razor_
 
 <PageTitle>Example</PageTitle>
 
-<script data-reload="true">console.log("Inline Script");</script>
+<script data-reload="true">console.log('Inline Script');</script>
 <script src="Example.js" data-reload="true"></script>
 
 ```
@@ -62,7 +62,7 @@ The BasicSample project in the `samples` folder can be used for reference. Make 
 
 ## Notes
 
-This solution does not actually "load" JavaScript - it simply replaces the ```script``` element in the DOM and relies on the browser to load the script using its standard behavior (ie. taking into consideration caching, etc...)
+This solution does not actually "load" JavaScript - it simply replaces the ```<script>``` element in the DOM and relies on the browser to load the script using its standard behavior (ie. taking into consideration caching, etc...)
 
 This solution does NOT support Interactive Blazor. Interactive Blazor uses a completely different approach for managing JavaScript integration (ie. JSInterop).
 
