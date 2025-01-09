@@ -1,6 +1,6 @@
 # Blazor Script Reload
 
-Blazor Web Applications (ie. Static Blazor using Enhanced Navigation) only process ```<script>``` elements during the initial page load. This means that any ```<script>``` elements which encountered during subsequent navigations are completely ignored. This project provides a simple solution for allowing ```<script>``` elements to behave in a  standard manner in a Blazor Web Application. It was inspired by the BlazorPageScript project created by Mackinnon Buck (https://github.com/MackinnonBuck/blazor-page-script) however it takes a completely different approach.
+Blazor Web Applications (ie. Static Blazor using Enhanced Navigation) only process ```<script>``` elements during the initial page load. This means that any ```<script>``` elements which are encountered during subsequent navigations are completely ignored. This project provides a simple solution for allowing ```<script>``` elements to behave in a standard manner in a Blazor Web Application. It was inspired by the BlazorPageScript project created by Mackinnon Buck (https://github.com/MackinnonBuck/blazor-page-script) however it takes a completely different approach.
 
 ## Goals
 
@@ -12,6 +12,7 @@ Blazor Web Applications (ie. Static Blazor using Enhanced Navigation) only proce
 - support most standard script libraries without requiring any modification
 - support script loading order to manage script dependencies
 - provide a simple alternative for simulating onload behavior during enhanced navigation
+- ensure that scripts are only executed once per enhanced navigation
 - utilize an opt-in approach to avoid undesired side effects
 - provide a simple integration story
 
@@ -21,7 +22,7 @@ Utilizes a custom HTML element which interacts with the Blazor "enhancedload" ev
 
 ## Integration
 
-- include the BlazorScriptReload Nuget package into your project
+- include the BlazorScriptReload Nuget package into your project ```<PackageReference Include="BlazorScriptReload" Version="1.0.0" />```
 - add a @using BlazorScriptReload to your _Imports.razor
 - include a single reference to the ```<ScriptReload />``` component at the bottom of your body section in App.razor 
 
@@ -31,7 +32,7 @@ Standard ```<script>``` elements can be used in Blazor components or content (in
 
 data-reload="true" - indicates that the script element should always be reloaded during an enhanced navigation. This ensures that any new scripts which are encountered are always loaded. It is also useful if you have scripts which are expected to be executed on every enhanced navigation (ie. in-line scripts).
 
-data-reload="false" - indicates that the script element should only be reloaded during an enhanced navigation if it was not already reloaded previously. This is useful for JavaScript libraries which only need to be loaded once and are then utilized by other JavaScript logic in your application.
+data-reload="false" - indicates that the script element should only be reloaded during an enhanced navigation if it was not already loaded previously. This is useful for JavaScript libraries which only need to be loaded once and are then utilized by other JavaScript logic in your application.
 
 ## Example
 
@@ -41,7 +42,7 @@ _Example.razor_
 
 <PageTitle>Example</PageTitle>
 
-<script data-reload="true">console.log("Inline Script");</script>
+<script data-reload="true">console.log('Inline Script');</script>
 <script src="Example.js" data-reload="true"></script>
 
 ```
@@ -51,7 +52,7 @@ _Example.js_
 console.log('External Script');
 ```
 
-Take a look at the `samples` folder in this repository for more usage examples.
+Take a look at the `samples` folder in this repository for more advanced usage examples.
 
 ## BasicSample
 
@@ -61,7 +62,7 @@ The BasicSample project in the `samples` folder can be used for reference. Make 
 
 ## Notes
 
-This solution does not actually "load" JavaScript - it simply replaces the ```script``` element in the DOM and relies on the browser to load the script using its standard behavior (ie. taking into consideration caching, etc...)
+This solution does not actually "load" JavaScript - it simply replaces the ```<script>``` element in the DOM and relies on the browser to load the script using its standard behavior (ie. taking into consideration caching, etc...)
 
 This solution does NOT support Interactive Blazor. Interactive Blazor uses a completely different approach for managing JavaScript integration (ie. JSInterop).
 
