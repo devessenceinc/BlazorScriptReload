@@ -5,7 +5,7 @@ This project demonstrates a simple approach for using standard ```<script>``` el
 ## Goals
 
 - allow developers to use standard ```<script>``` elements in their Blazor Web Application components
-- allow content creators to use standard ```<script>``` elements in their markup (if they have the permission to do so in their CMS)
+- allow content creators to use standard ```<script>``` elements in their markup (if they have the permission to do so in their application)
 - leverage standard browser script loading behaviors
 - support external and in-line scripts
 - support scripts in the head and body of a document
