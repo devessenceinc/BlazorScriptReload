@@ -111,6 +111,7 @@ function replaceScript(script) {
             newScript.setAttribute(script.attributes[i].name, script.attributes[i].value);
         }
         newScript.innerHTML = script.innerHTML;
+        newScript.removeAttribute('data-reload');
 
         // dynamically injected scripts cannot be async or deferred
         newScript.async = false;
