@@ -23,7 +23,7 @@ Utilizes a custom HTML element which interacts with the Blazor "enhancedload" ev
 
 - include the BlazorScriptReload Nuget package into your project
 - add a @using BlazorScriptReload to your _Imports.razor
-- include a reference to the ```<ScriptReload />``` component at the bottom of your body section in App.razor 
+- include a single reference to the ```<ScriptReload />``` component at the bottom of your body section in App.razor 
 
 ## Basic Usage
 
