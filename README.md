@@ -1,3 +1,54 @@
 # Blazor Script Reload
 
-This project demonstrates a simple approach for using JavaScript in Static Blazor. This approach enables you to include standard ```<script>``` elements (inline or external) in your Blazor components which will be executed on enhanced navigations. This solution uses the PageScript custom element by Mackinnon Buck (https://github.com/MackinnonBuck/blazor-page-script) in conjunction with an intelligent "reload" script (https://github.com/devessenceinc/BlazorScriptReload/blob/main/BlazorScriptReload/wwwroot/reload2.js)
+This project demonstrates a simple approach for using standard ```<script>``` elements in Blazor Web Applications (ie. Static Blazor using Enhanced Navigation). It was inspired by the BlazorPageScript project created by Mackinnon Buck (https://github.com/MackinnonBuck/blazor-page-script) however it takes a different approach.
+
+## Goals
+
+- allow developers to use standard ```<script>``` elements in their Blazor Web Application components
+- allow content creators to use standard ```<script>``` elements in their markup (if they have the permission to do so in their CMS)
+- leverage standard browser script loading behaviors
+- support external and in-line scripts
+- support scripts in the head and body of a document
+- support most standard script libraries without requiring any modification
+- support script loading order to manage script dependencies
+- provide a simple alternative for simulating onload behavior during enhanced navigation
+- utilize an opt-in approach to avoid undesired side effects
+- provide a simple integration story
+
+## Solution
+
+Utilizes a custom HTML element which interacts with the Blazor "enhancedload" event. When an "enhancedload" occurs it trigger logic which iterates over all of the script elements in the page. Any script element which has a data-reload attribute specified is "replaced" in the DOM which forces the browser to process the script element utilizing its standard script loading approach.
+
+## Integration
+
+- include the BlazorScriptReload Nuget package into your project
+- add a @using BlazorScriptReload to your _Imports.razor
+- include a reference to the <ScriptReload /> component at the bottom of your body section in App.razor 
+
+## Basic Usage
+
+Standard ```<script>``` elements can be used in Blazor components or content - including support for all standard attributes such as "type", "integrity", "crossorigin", etc... However in order for a ```<script>``` element to be reloaded it MUST include a custom "data-reload" attribute:
+
+data-reload="true" - indicates that the script element should always be reloaded during an enhanced navigation. This ensures that any new scripts which are encountered are always loaded. It is also useful if you have scripts which are expected to be executed on every enhanced navigation (ie. in-line scripts).
+
+data-reload="false" - indicates that the script element should only be reloaded during an enhanced navigation if it was not already reloaded previously. This is useful for JavaScript libraries which only need to be loaded once and are then utilized by other JavaScript logic in your application.
+
+## Example
+
+_Example.razor_
+```
+@page "/example"
+
+<PageTitle>Example</PageTitle>
+
+<script data-reload="true">console.log("Inline Script");</script>
+<script src="Example.js" data-reload="true"></script>
+
+```
+_Example.js_
+
+```
+console.log('External Script');
+```
+
+Take a look at the `samples` folder in this repository for more usage examples.
