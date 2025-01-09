@@ -22,8 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-// <script-reload"></script-reload> must be added to bottom of page body in App.razor
-
 let scriptReloadEnabled = false;
 const scriptKeys = new Set();
 
