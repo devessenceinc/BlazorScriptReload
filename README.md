@@ -5,7 +5,7 @@ This project demonstrates a simple approach for using standard ```<script>``` el
 ## Goals
 
 - allow developers to use standard ```<script>``` elements in their Blazor Web Application components
-- allow content creators to use standard ```<script>``` elements in their markup (if they have the permission to do so in their CMS)
+- allow content creators to use standard ```<script>``` elements in their markup (if they have the permission to do so in their application)
 - leverage standard browser script loading behaviors
 - support external and in-line scripts
 - support scripts in the head and body of a document
@@ -23,11 +23,11 @@ Utilizes a custom HTML element which interacts with the Blazor "enhancedload" ev
 
 - include the BlazorScriptReload Nuget package into your project
 - add a @using BlazorScriptReload to your _Imports.razor
-- include a reference to the <ScriptReload /> component at the bottom of your body section in App.razor 
+- include a single reference to the ```<ScriptReload />``` component at the bottom of your body section in App.razor 
 
 ## Basic Usage
 
-Standard ```<script>``` elements can be used in Blazor components or content - including support for all standard attributes such as "type", "integrity", "crossorigin", etc... However in order for a ```<script>``` element to be reloaded it MUST include a custom "data-reload" attribute:
+Standard ```<script>``` elements can be used in Blazor components or content (including support for all standard attributes such as "type", "integrity", "crossorigin", etc...). However in order for a ```<script>``` element to be reloaded it MUST include a custom "data-reload" attribute:
 
 data-reload="true" - indicates that the script element should always be reloaded during an enhanced navigation. This ensures that any new scripts which are encountered are always loaded. It is also useful if you have scripts which are expected to be executed on every enhanced navigation (ie. in-line scripts).
 
@@ -52,3 +52,13 @@ console.log('External Script');
 ```
 
 Take a look at the `samples` folder in this repository for more usage examples.
+
+## BasicSample
+
+The BasicSample project in the `samples` folder can be used for reference. Make sure you set BasicSample as the Startup Project for your solution before you run the project. The BasicSample has a number of different scenarios and it allows you to toggle the Blazor Script Reload option at run-time to view the differences in behavior.
+
+![image](https://github.com/user-attachments/assets/65ecc9d0-3d82-4c7d-95d3-42130580b9f0)
+
+## Notes
+
+This solution does not actually "load" JavaScript - it simply replaces the ```script``` element in the DOM and relies on the browser to load the script using its standard behavior (ie. taking into consideration caching, etc...)
