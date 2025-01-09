@@ -53,6 +53,12 @@ console.log('External Script');
 
 Take a look at the `samples` folder in this repository for more usage examples.
 
+## BasicSample
+
+The BasicSample project in the `samples` folder can be used for reference. Make sure you set BasicSample as the Startup Project for your solution before you run the project. The BasicSample has a number of different scenarios and it allows you to toggle the Blazor Script Reload option at run-time to view the differences in behavior.
+
+![image](https://github.com/user-attachments/assets/65ecc9d0-3d82-4c7d-95d3-42130580b9f0)
+
 ## Notes
 
 This solution does not actually "load" JavaScript - it simply replaces the ```script``` element in the DOM and relies on the browser to load the script using its standard behavior (ie. taking into consideration caching, etc...)
