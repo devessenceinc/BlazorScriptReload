@@ -12,6 +12,7 @@ Blazor Web Applications (ie. Static Blazor using Enhanced Navigation) only proce
 - support most standard script libraries without requiring any modification
 - support script loading order to manage script dependencies
 - provide a simple alternative for simulating onload behavior during enhanced navigation
+- ensure that scripts are only executed once per enhanced navigation
 - utilize an opt-in approach to avoid undesired side effects
 - provide a simple integration story
 
