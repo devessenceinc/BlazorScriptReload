@@ -1,6 +1,6 @@
 # Blazor Script Reload
 
-This project demonstrates a simple approach for using standard ```<script>``` elements in Blazor Web Applications (ie. Static Blazor using Enhanced Navigation). It was inspired by the BlazorPageScript project created by Mackinnon Buck (https://github.com/MackinnonBuck/blazor-page-script) however it takes a different approach.
+Blazor Web Applications (ie. Static Blazor using Enhanced Navigation) only process ```<script>``` elements during the initial page load. This means that any ```<script>``` elements which encountered during subsequent navigations are ignored. This project provides a simple solution for using standard ```<script>``` elements in Blazor Web Applications. It was inspired by the BlazorPageScript project created by Mackinnon Buck (https://github.com/MackinnonBuck/blazor-page-script) however it takes a different approach.
 
 ## Goals
 
