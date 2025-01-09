@@ -4,15 +4,15 @@
 
 <h1>Dynamic Text</h1>
 
-<p>Displays the year dynamically using document.write</p>
+<p>Displays the year dynamically using inline JavaScript and innerHTML</p>
 
-@* The following inline script uses document.write which must be ignored by reload as it will overwrite the entire document's content on an enhanced navigation *@
-<p>Copyright (c) &gt;<script data-reload="true">document.write(new Date().getFullYear());</script>&lt;</p>
-
-<p>Displays the year dynamically using innerHTML</p>
-
-@* The following inline script manipulates a specific DOM element and is safe to reload *@
+@* manipulates a specific DOM element and is safe to reload *@
 <p>Copyright (c) &gt;<span id="currentyear"></span>&lt;</p>
 <script data-reload="true">document.getElementById("currentyear").innerHTML = new Date().getFullYear();</script>
+
+<p>Displays the year dynamically using inline JavaScript and document.write (not supported in enhanced navigation or reload)</p>
+
+@* document.write is ignored by reload as it will overwrite the entire document's content *@
+<p>Copyright (c) &gt;<script data-reload="true">document.write(new Date().getFullYear());</script>&lt;</p>
 
 

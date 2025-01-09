@@ -1,1 +1,1 @@
-﻿alert('External Script - Home.razor');
+﻿console.log('External Script - Home.razor');

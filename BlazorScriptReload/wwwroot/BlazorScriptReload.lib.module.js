@@ -22,11 +22,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+// <script-reload"></script-reload> must be added to bottom of page body in App.razor
+
 let scriptReloadEnabled = false;
 const scriptKeys = new Set();
 
-// add <script-reload"></script-reload> to bottom of page body in App.razor
 export function afterWebStarted(blazor) {
+    // define custom element
     customElements.define('script-reload', class extends HTMLElement {
         connectedCallback() {
             scriptReloadEnabled = true;
@@ -35,7 +37,7 @@ export function afterWebStarted(blazor) {
             scriptReloadEnabled = false;
         }    
     });
-
+    // listen for enhanced navigation
     blazor.addEventListener('enhancedload', onEnhancedLoad);
 }
 
@@ -57,12 +59,14 @@ function reloadScripts() {
             let key = getKey(script);
 
             if (enhancedNavigation) {
+                // reload the script if data-reload is true or if data-reload is false and the script has not been loaded previously
                 let dataReload = script.getAttribute('data-reload');
-                if (dataReload === 'true' || (dataReload == 'once' && !scriptKeys.has(key))) {
+                if (dataReload === 'true' || (dataReload == 'false' && !scriptKeys.has(key))) {
                     reloadScript(script);
                 }
             }
 
+            // save the script key
             if (!scriptKeys.has(key)) {
                 scriptKeys.add(key);
             }
