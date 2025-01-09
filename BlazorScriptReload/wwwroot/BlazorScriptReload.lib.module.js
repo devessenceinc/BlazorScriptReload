@@ -75,6 +75,7 @@ function reloadScripts() {
 }
 
 function getKey(script) {
+    // the key is either the script src for external scripts or the script content for inline scripts
     if (script.src) {
         return script.src;
     } else {
