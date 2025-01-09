@@ -10,7 +10,7 @@
 <p>Copyright (c) &gt;<span id="currentyear"></span>&lt;</p>
 <script data-reload="true">document.getElementById("currentyear").innerHTML = new Date().getFullYear();</script>
 
-<p>Displays the year dynamically using inline JavaScript and document.write (not supported in enhanced navigation or reload)</p>
+<p>Displays the year dynamically using inline JavaScript and document.write (not supported on enhanced navigation or using reload)</p>
 
 @* document.write is ignored by reload as it will overwrite the entire document's content *@
 <p>Copyright (c) &gt;<script data-reload="true">document.write(new Date().getFullYear());</script>&lt;</p>
