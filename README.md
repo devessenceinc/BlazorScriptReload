@@ -51,7 +51,7 @@ _Example.js_
 console.log('External Script');
 ```
 
-Take a look at the `samples` folder in this repository for more usage examples.
+Take a look at the `samples` folder in this repository for more advanced usage examples.
 
 ## BasicSample
 
