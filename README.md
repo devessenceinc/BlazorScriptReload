@@ -32,11 +32,12 @@ Utilizes a custom HTML element which interacts with the Blazor "enhancedload" ev
 
 - add a ```@using BlazorScriptReload``` to your _Imports.razor (or simply add the using statement to App.razor)
 
-- include ```<ScriptReload />``` to the bottom of your body section in App.razor:
+- include ```<ScriptReload />``` at the bottom of your body section in App.razor:
 
 ```
 <body>
     <Routes />
+    ...
     <script src="_framework/blazor.web.js"></script>
     <ScriptReload />
 </body>
