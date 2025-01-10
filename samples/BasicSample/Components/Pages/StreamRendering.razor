@@ -1,13 +1,13 @@
-﻿@page "/weather"
+﻿@page "/streamrendering"
 @attribute [StreamRendering]
 
 <PageTitle>Weather</PageTitle>
 
-<h1>Weather</h1>
+<h1>Stream Rendering</h1>
 
-<script data-reload="true">alert('Supports Stream Rendering');</script>
+<p>This page shows an alert in a component that is using Stream Rendering</p>
 
-<p>This component demonstrates showing data.</p>
+<script data-reload="true">alert('Inline Script - Stream Rendering');</script>
 
 @if (forecasts == null)
 {

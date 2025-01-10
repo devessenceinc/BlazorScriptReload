@@ -57,9 +57,9 @@ function reloadScripts() {
             let key = getKey(script);
 
             if (enhancedNavigation) {
-                // reload the script if data-reload is true or if data-reload is false and the script has not been loaded previously
+                // reload the script if data-reload is true or if the script has not been loaded previously and data-reload is once 
                 let dataReload = script.getAttribute('data-reload');
-                if (dataReload === 'true' || (dataReload == 'false' && !scriptKeys.has(key))) {
+                if (dataReload === 'true' || (!scriptKeys.has(key) && dataReload == 'once')) {
                     reloadScript(script);
                 }
             }
@@ -73,9 +73,10 @@ function reloadScripts() {
 }
 
 function getKey(script) {
-    // the key is either the script src for external scripts or the script content for inline scripts
     if (script.src) {
         return script.src;
+    } else if (script.id) {
+        return script.id;
     } else {
         return script.innerHTML;
     }
