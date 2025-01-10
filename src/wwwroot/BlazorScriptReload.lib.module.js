@@ -35,7 +35,7 @@ export function afterWebStarted(blazor) {
             scriptReloadEnabled = false;
         }    
     });
-    // listen for enhanced navigation (note that 'enhancednavigationend' is a new event in .NET 9 which may be a better option)
+    // listen for enhanced navigation (note that 'enhancednavigationend' is a new event in .NET 9 which is a better option)
     blazor.addEventListener('enhancedload', onEnhancedLoad);
 }
 
