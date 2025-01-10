@@ -37,6 +37,7 @@ Utilizes a custom HTML element which interacts with the Blazor "enhancedload" ev
 ```
 <body>
     <Routes />
+    ...
     <script src="_framework/blazor.web.js"></script>
     <ScriptReload />
 </body>
