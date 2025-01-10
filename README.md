@@ -32,7 +32,7 @@ Standard ```<script>``` elements can be used in Blazor components or content (in
 
 data-reload="true" - indicates that the script element should always be reloaded during an enhanced navigation. This ensures that any new scripts which are encountered are always loaded. It is also useful if you have scripts which are expected to be executed on every enhanced navigation (ie. in-line scripts).
 
-data-reload="false" - indicates that the script element should only be reloaded during an enhanced navigation if it was not already loaded previously. This is useful for JavaScript libraries which only need to be loaded once and are then utilized by other JavaScript logic in your application.
+data-reload="once" - indicates that the script element should only be reloaded during an enhanced navigation if it was not already loaded previously. This is useful for JavaScript libraries which only need to be loaded once and are then utilized by other JavaScript logic in your application.
 
 ## Example
 
@@ -64,7 +64,9 @@ The BasicSample project in the `samples` folder can be used for reference. Make 
 
 This solution does not actually "load" JavaScript - it simply replaces the ```<script>``` element in the DOM and relies on the browser to load the script using its standard behavior (ie. taking into consideration caching, etc...).
 
-This solution does support Stream Rendering however due to the fact that Stream Rendering refreshes the UI multiple times as content is streamed to the browser, your script may be executed multiple times. 
+External scripts are identified using their "src" attribute. In-line scripts are identified by their "id" attribute, or if it is not specified, by their content. 
+
+This solution DOES support Stream Rendering however due to the fact that Stream Rendering refreshes the UI multiple times as content is streamed to the browser, your script may be executed multiple times. 
 
 This solution does NOT support Interactive Blazor. Interactive Blazor uses a completely different approach for managing JavaScript integration (ie. JSInterop). Including ```<script>``` elements within your interactive components may result in JavaScript errors in blazor.web.js related to "There was an error applying batch".
 
