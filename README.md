@@ -62,7 +62,9 @@ The BasicSample project in the `samples` folder can be used for reference. Make 
 
 ## Notes
 
-This solution does not actually "load" JavaScript - it simply replaces the ```<script>``` element in the DOM and relies on the browser to load the script using its standard behavior (ie. taking into consideration caching, etc...)
+This solution does not actually "load" JavaScript - it simply replaces the ```<script>``` element in the DOM and relies on the browser to load the script using its standard behavior (ie. taking into consideration caching, etc...).
+
+This solution does support Stream Rendering however due to the fact that Stream Rendering refreshes the UI multiple times as content is streamed to the browser, your script may be executed multiple times. 
 
 This solution does NOT support Interactive Blazor. Interactive Blazor uses a completely different approach for managing JavaScript integration (ie. JSInterop). Including ```<script>``` elements within your interactive components may result in JavaScript errors in blazor.web.js related to "There was an error applying batch".
 
