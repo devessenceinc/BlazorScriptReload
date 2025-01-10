@@ -24,11 +24,11 @@ Utilizes a custom HTML element which interacts with the Blazor "enhancedload" ev
 
 - include the BlazorScriptReload Nuget package into your project:
 
-  ```
-	<ItemGroup>
-		<PackageReference Include="BlazorScriptReload" Version="1.0.1" />
-	</ItemGroup>
-  ```
+```
+<ItemGroup>
+    <PackageReference Include="BlazorScriptReload" Version="1.0.1" />
+</ItemGroup>
+```
 
 - add a ```@using BlazorScriptReload``` to your _Imports.razor (or simply add the using statement to App.razor)
 
