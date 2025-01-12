@@ -1,6 +1,6 @@
 # Blazor Script Reload
 
-Blazor Web Applications (ie. Static Blazor using Enhanced Navigation) only process ```<script>``` elements during the initial page load. This means that any ```<script>``` elements which are encountered during subsequent navigations are ignored, resulting in unexpected behavior and broken functionality. 
+Blazor Web Applications (ie. Static Blazor using Enhanced Navigation) only process ```<script>``` elements during the initial page load. This means that any ```<script>``` elements which are encountered during subsequent "enhanced" navigations are ignored, resulting in unexpected behavior and broken functionality. 
 
 This project provides a simple solution for allowing ```<script>``` elements to behave in a standard manner in a Blazor Web Application. It was inspired by the BlazorPageScript project created by Mackinnon Buck (https://github.com/MackinnonBuck/blazor-page-script) however it takes a different approach.
 
@@ -88,6 +88,8 @@ This solution does not actually "load" JavaScript - it simply replaces the ```<s
 External scripts are identified using their "src" attribute. In-line scripts are identified by their "id" attribute, or if it is not specified, by their content. 
 
 ** This solution DOES support Stream Rendering however due to the fact that Stream Rendering refreshes the UI multiple times as content is streamed to the browser, your script may be executed multiple times. Note that in .NET 9 there is a new event 'enhancednavigationend' which is triggered after all stream rendering has completed and would be a better option for ensuring script reloads only occur once per enhanced navigation. This event is not utilized currently as BlazorScriptReload needs to support applications using .NET 8 (LTS).
+
+This solution does not support document.write (which is demonstrated in the BasicSample application). This is because BlazorScriptReload executes after the page has been rendered, which means document.write will overwrite the entire document's content. Note that standard Blazor Web Applications also do not support document.write as it is ignored on enhanced navigations. So the solution is to replace document.write logic with alternatives which target specific DOM elements. 
 
 This solution does NOT support Interactive Blazor. Interactive Blazor uses a completely different approach for managing JavaScript integration (ie. JSInterop). Including ```<script>``` elements within your interactive components may result in JavaScript errors in blazor.web.js related to "There was an error applying batch", and therefore is not recommended.
 
