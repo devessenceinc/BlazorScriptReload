@@ -20,7 +20,7 @@ This project provides a simple solution for allowing ```<script>``` elements to 
 
 ## Solution
 
-Utilizes a custom HTML element which interacts with the Blazor "enhancedload" event. When an "enhancedload" occurs it triggers logic which iterates over all of the script elements in the page. Any script element which has a "data-reload" attribute specified is "replaced" in the DOM which forces the browser to process the script element utilizing its standard script loading approach.
+Utilizes a custom HTML element which interacts with the Blazor "enhancedload" event. When an "enhancedload" occurs it triggers logic which iterates over all of the script elements in the page. Any script element which has a **data-reload** attribute specified is "replaced" in the DOM which forces the browser to process the script element utilizing its standard script loading approach.
 
 ## Integration
 
