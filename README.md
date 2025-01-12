@@ -89,7 +89,7 @@ External scripts are identified using their "src" attribute. In-line scripts are
 
 ** This solution DOES support Stream Rendering however due to the fact that Stream Rendering refreshes the UI multiple times as content is streamed to the browser, your script may be executed multiple times. Note that in .NET 9 there is a new event 'enhancednavigationend' which is triggered after all stream rendering has completed and would be a better option for ensuring script reloads only occur once per enhanced navigation. This event is not utilized currently as BlazorScriptReload needs to support applications using .NET 8 (LTS).
 
-This solution does NOT support Interactive Blazor. Interactive Blazor uses a completely different approach for managing JavaScript integration (ie. JSInterop). Including ```<script>``` elements within your interactive components may result in JavaScript errors in blazor.web.js related to "There was an error applying batch".
+This solution does NOT support Interactive Blazor. Interactive Blazor uses a completely different approach for managing JavaScript integration (ie. JSInterop). Including ```<script>``` elements within your interactive components may result in JavaScript errors in blazor.web.js related to "There was an error applying batch", and therefore is not recommended.
 
 This solution is not intended to solve every challenge related to JavaScript and Blazor Web Applications. There are scenarios where this solution is not appropriate and developers will need to explore alternative solutions such as [Blazor Page Script](https://github.com/MackinnonBuck/blazor-page-script) or [BlazorJsComponents](https://github.com/MackinnonBuck/blazor-js-components).
 
