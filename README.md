@@ -14,7 +14,7 @@ This project provides a simple solution for allowing ```<script>``` elements to 
 - support most standard script libraries without requiring any modification
 - support script loading order to manage script dependencies
 - provide a simple alternative for simulating onload behavior during enhanced navigation
-- ensure that scripts are only executed once per enhanced navigation
+- ensure that scripts are only executed once per enhanced navigation**
 - utilize an opt-in approach to avoid undesired side effects
 - provide a simple integration story
 
@@ -87,7 +87,7 @@ This solution does not actually "load" JavaScript - it simply replaces the ```<s
 
 External scripts are identified using their "src" attribute. In-line scripts are identified by their "id" attribute, or if it is not specified, by their content. 
 
-This solution DOES support Stream Rendering however due to the fact that Stream Rendering refreshes the UI multiple times as content is streamed to the browser, your script may be executed multiple times. Note that in .NET 9 there is a new event 'enhancednavigationend' which is triggered after all stream rendering has completed and would be a better option for ensuring script reloads only occur once per enhanced navigation.
+** This solution DOES support Stream Rendering however due to the fact that Stream Rendering refreshes the UI multiple times as content is streamed to the browser, your script may be executed multiple times. Note that in .NET 9 there is a new event 'enhancednavigationend' which is triggered after all stream rendering has completed and would be a better option for ensuring script reloads only occur once per enhanced navigation.
 
 This solution does NOT support Interactive Blazor. Interactive Blazor uses a completely different approach for managing JavaScript integration (ie. JSInterop). Including ```<script>``` elements within your interactive components may result in JavaScript errors in blazor.web.js related to "There was an error applying batch".
 
