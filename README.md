@@ -47,11 +47,11 @@ Utilizes a custom HTML element which interacts with the Blazor "enhancedload" ev
 
 ## Basic Usage
 
-Standard ```<script>``` elements can be used in Blazor components or content (including support for all standard attributes such as "type", "integrity", "crossorigin", etc...). However in order for a ```<script>``` element to be reloaded it MUST include a custom "data-reload" attribute:
+Standard ```<script>``` elements can be used in Blazor components or content (including support for all standard attributes such as "type", "integrity", "crossorigin", etc...). However in order for a ```<script>``` element to be reloaded it MUST include a custom "**data-reload**" attribute:
 
-data-reload="true" - indicates that the script element should always be reloaded during an enhanced navigation. This ensures that any new scripts which are encountered are always loaded. It is also useful if you have scripts which are expected to be executed on every enhanced navigation (ie. in-line scripts).
+**data-reload="true"** - indicates that the script element should always be reloaded during an enhanced navigation. This ensures that any new scripts which are encountered are always loaded. It is also useful if you have scripts which are expected to be executed on every enhanced navigation (ie. in-line scripts).
 
-data-reload="once" - indicates that the script element should only be reloaded during an enhanced navigation if it was not already loaded previously. This is useful for JavaScript libraries which only need to be loaded once and are then utilized by other JavaScript logic in your application.
+**data-reload="once"** - indicates that the script element should only be reloaded during an enhanced navigation if it was not already loaded previously. This is useful for JavaScript libraries which only need to be loaded once and are then utilized by other JavaScript logic in your application.
 
 ## Example
 
