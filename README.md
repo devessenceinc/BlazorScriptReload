@@ -91,4 +91,6 @@ External scripts are identified using their "src" attribute. In-line scripts are
 
 This solution does NOT support Interactive Blazor. Interactive Blazor uses a completely different approach for managing JavaScript integration (ie. JSInterop). Including ```<script>``` elements within your interactive components may result in JavaScript errors in blazor.web.js related to "There was an error applying batch".
 
+This solution is not intended to solve every challenge related to JavaScript and Blazor Web Applications. There are scenarios where this solution is not appropriate and developers will need to explore alternative solutions such as [Blazor Page Script](https://github.com/MackinnonBuck/blazor-page-script) or [BlazorJsComponents](https://github.com/MackinnonBuck/blazor-js-components).
+
 This solution was originally created for Oqtane (https://www.oqtane.org) - a CMS and Application Framework for Blazor and .NET MAUI. Oqtane is a modern development platform which solves many challenging problems for developers (ie. multi-tenancy, modularity, etc...) allowing them to focus on building applications rather than infrastructure.
