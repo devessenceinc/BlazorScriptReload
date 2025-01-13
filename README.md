@@ -1,6 +1,6 @@
 # Blazor Script Reload
 
-![alt text](https://github.com/devessenceinc/BlazorScriptReload/blob/main/BlazorScriptReload.png?raw=true)
+![BlazorScriptReload - a solution for using JavaScript with Blazor Web Applications](https://github.com/devessenceinc/BlazorScriptReload/blob/main/BlazorScriptReload.png?raw=true)
 
 Blazor Web Applications (ie. Static Blazor using Enhanced Navigation) only process ```<script>``` elements during the initial page load. This means that any ```<script>``` elements which are encountered during subsequent "enhanced" navigations are ignored, resulting in unexpected behavior and broken functionality. 
 
