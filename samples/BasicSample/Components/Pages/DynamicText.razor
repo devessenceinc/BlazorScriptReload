@@ -4,13 +4,13 @@
 
 <h1>Dynamic Text</h1>
 
-<p>Displays the year dynamically using inline JavaScript and innerHTML</p>
+<p>This page displays the year dynamically using inline JavaScript</p>
 
 @* manipulates a specific DOM element and is safe to reload *@
 <p>Copyright (c) &gt;<span id="currentyear"></span>&lt;</p>
 <script data-reload="true">document.getElementById("currentyear").innerHTML = new Date().getFullYear();</script>
 
-<p>Displays the year dynamically using inline JavaScript and document.write (not supported on enhanced navigation or using reload)</p>
+<p>This section displays the year dynamically using document.write (which is not supported on enhanced navigations or using BlazorScriptReload)</p>
 
 @* document.write is ignored by reload as it will overwrite the entire document's content *@
 <p>Copyright (c) &gt;<script data-reload="true">document.write(new Date().getFullYear());</script>&lt;</p>
