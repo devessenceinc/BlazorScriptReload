@@ -57,9 +57,9 @@ function reloadScripts() {
             let key = getKey(script);
 
             if (enhancedNavigation) {
-                // reload the script if data-reload is true or if the script has not been loaded previously and data-reload is once 
+                // reload the script if data-reload is true/always or if the script has not been loaded previously and data-reload is once 
                 let dataReload = script.getAttribute('data-reload');
-                if (dataReload === 'true' || (!scriptKeys.has(key) && dataReload == 'once')) {
+                if ((dataReload === 'true' || dataReload === 'always') || (!scriptKeys.has(key) && dataReload == 'once')) {
                     reloadScript(script);
                 }
             }
@@ -103,6 +103,7 @@ function isValid(script) {
     }
     return true;
 }
+
 function replaceScript(script) {
     return new Promise((resolve, reject) => {
         var newScript = document.createElement('script');

@@ -1,0 +1,16 @@
+﻿@page "/interactive"
+@rendermode InteractiveServer
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Interactive</PageTitle>
+
+<h1>Interactive</h1>
+
+<p>This page uses Interactive Rendering and uses JS Interop to display an alert message</p>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("showAlert");
+    }
+}
