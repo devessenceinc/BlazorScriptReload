@@ -8,11 +8,11 @@
 
 @* manipulates a specific DOM element and is safe to reload *@
 <p>Copyright (c) &gt;<span id="currentyear"></span>&lt;</p>
-<script data-reload="true">document.getElementById("currentyear").innerHTML = new Date().getFullYear();</script>
+<script data-reload="always">document.getElementById("currentyear").innerHTML = new Date().getFullYear();</script>
 
 <p>This section displays the year dynamically using document.write (which is not supported on enhanced navigations or using BlazorScriptReload)</p>
 
 @* document.write is ignored by reload as it will overwrite the entire document's content *@
-<p>Copyright (c) &gt;<script data-reload="true">document.write(new Date().getFullYear());</script>&lt;</p>
+<p>Copyright (c) &gt;<script data-reload="always">document.write(new Date().getFullYear());</script>&lt;</p>
 
 

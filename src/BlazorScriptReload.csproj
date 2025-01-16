@@ -9,7 +9,7 @@
 	<Company>Devessence Inc</Company>
 	<Description>A solution for using JavaScript in Blazor Web Applications</Description>
 	<Copyright>Devessence Inc</Copyright>
-	<Version>1.0.1</Version>
+	<Version>1.0.2</Version>
     <RepositoryUrl>https://github.com/devessenceinc/BlazorScriptReload.git</RepositoryUrl>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>

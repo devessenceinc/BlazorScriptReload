@@ -51,13 +51,13 @@ Utilizes a custom HTML element which interacts with the Blazor "enhancedload" ev
 
 Standard ```<script>``` elements can be used in Blazor components or page content (including support for all standard attributes such as "type", "integrity", "crossorigin", etc...). However in order for a ```<script>``` element to be reloaded it MUST include a custom "**data-reload**" attribute:
 
-**data-reload="once"** - indicates that the script element should only be reloaded during an enhanced navigation if it was not already loaded previously. This is useful for JavaScript libraries which only need to be loaded once and are then utilized by other JavaScript logic in your application.
+**data-reload="once" (or "true")** - indicates that the script element should only be reloaded during an enhanced navigation if it was not already loaded previously. This is useful for JavaScript libraries which only need to be loaded once and are then utilized by other JavaScript logic in your application.
 
-**data-reload="true"** - indicates that the script element should always be reloaded during an enhanced navigation. This is useful if you have scripts which are expected to be executed on every enhanced navigation (ie. in-line scripts).
+**data-reload="always"** - indicates that the script element should always be reloaded during an enhanced navigation. This is useful if you have scripts which are expected to be executed on every enhanced navigation (ie. in-line scripts).
 
 ## Example
 
-The following example is a standard Blazor page component which contains two ```<script>``` elements (in-line and external) which log a message to the browser console. In a standard Blazor Web Application these ```<script>``` elements would be ignored if the "example" page was requested after an "enhanced navigation" (ie. if a user initially loaded the "home" page and then navigated to the "example" page). Blazor Script Reload will ensure that these scripts are always executed as expected. You can test the difference in behavior by removing the data-reload="true" attribute from the ```<script>``` elements and observing the results.
+The following example is a standard Blazor page component which contains two ```<script>``` elements (in-line and external) which log a message to the browser console. In a standard Blazor Web Application these ```<script>``` elements would be ignored if the "example" page was requested after an "enhanced navigation" (ie. if a user initially loaded the "home" page and then navigated to the "example" page). Blazor Script Reload will ensure that these scripts are always executed as expected. You can test the difference in behavior by modifying the data-reload attribute value on the ```<script>``` elements and observing the results.
 
 _Example.razor_
 ```
@@ -65,8 +65,8 @@ _Example.razor_
 
 <PageTitle>Example</PageTitle>
 
-<script data-reload="true">console.log('Inline Script');</script>
-<script src="Example.js" data-reload="true"></script>
+<script data-reload="always">console.log('Inline Script');</script>
+<script src="Example.js" data-reload="always"></script>
 
 ```
 _Example.js_
