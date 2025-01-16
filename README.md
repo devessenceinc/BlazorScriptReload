@@ -73,7 +73,7 @@ _Example1.js_
 console.log('External Script');
 ```
 
-The example below is a standard Blazor page component which contains three ```<script>``` elements. The first two are external JavaScript libraries (requiring integrity and crossorigin attributes for security) which only need to be loaded once. The third is a local script which displays a gallery of images and needs to be executed on every enhanced navigation to the page. Note that the third script is dependent upon the capabilities of the first two scripts and therefore needs to be loaded last. 
+The example below is a standard Blazor page component which contains three ```<script>``` elements. The first two elements are external JavaScript libraries (requiring integrity and crossorigin attributes for security) which only need to be loaded once. The third element is a local script which displays a gallery of images and needs to be executed on every enhanced navigation to the page. Note that the third script is dependent upon the capabilities of the first two scripts and therefore needs to be loaded last. 
 
 ```
 @page "/example2"
