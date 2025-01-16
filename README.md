@@ -26,7 +26,7 @@ Utilizes a custom HTML element which interacts with the Blazor "enhancedload" ev
 
 ## Integration
 
-- include the latest BlazorScriptReload Nuget package into your project:
+- include the latest BlazorScriptReload Nuget package into your Blazor Web Application project:
 
 ```
 <ItemGroup>
