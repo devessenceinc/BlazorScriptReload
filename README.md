@@ -2,9 +2,9 @@
 
 ![BlazorScriptReload - a solution for using JavaScript in Blazor Web Applications](https://github.com/devessenceinc/BlazorScriptReload/blob/main/BlazorScriptReload.png?raw=true)
 
-Blazor Web Applications (ie. Static Blazor using Enhanced Navigation) only process ```<script>``` elements during the initial page load. This means that any ```<script>``` elements which are encountered during subsequent "enhanced" navigations are ignored, resulting in unexpected behavior and broken functionality. 
+Blazor Web Applications (ie. Static Server-Side Blazor using Enhanced Navigation) only process ```<script>``` elements during the initial page load. This means that any ```<script>``` elements which are encountered during subsequent "enhanced" navigations are ignored, resulting in unexpected behavior and broken functionality. 
 
-This project provides a simple solution for allowing ```<script>``` elements to behave in a standard manner in a Blazor Web Application. It was inspired by the BlazorPageScript project created by Mackinnon Buck (https://github.com/MackinnonBuck/blazor-page-script) however it takes a different approach.
+This project provides a simple solution for allowing ```<script>``` elements to behave in a standard manner in a Blazor Web Application. It was inspired by the [BlazorPageScript](https://github.com/MackinnonBuck/blazor-page-script) project created by Mackinnon Buck however it takes a different approach.
 
 ## Goals
 
@@ -97,4 +97,4 @@ This solution does NOT support Interactive Blazor. Interactive Blazor uses a com
 
 This solution is not intended to solve every challenge related to JavaScript and Blazor Web Applications. There are scenarios where this solution is not appropriate and developers will need to explore alternative solutions such as [Blazor Page Script](https://github.com/MackinnonBuck/blazor-page-script) or [BlazorJsComponents](https://github.com/MackinnonBuck/blazor-js-components).
 
-This solution was originally created for Oqtane (https://www.oqtane.org) - a CMS and Application Framework for Blazor and .NET MAUI. Oqtane is a modern development platform which solves many challenging problems for developers (ie. multi-tenancy, modularity, etc...) allowing them to focus on building applications rather than infrastructure.
+This solution was originally created for [Oqtane](https://www.oqtane.org) - a CMS and Application Framework for Blazor and .NET MAUI. Oqtane is a modern development platform which solves many challenging problems for developers (ie. multi-tenancy, modularity, etc...) allowing them to focus on building applications rather than infrastructure.
