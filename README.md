@@ -55,24 +55,32 @@ Standard ```<script>``` elements can be used in Blazor components or page conten
 
 **data-reload="always"** - indicates that the script element should always be reloaded during an enhanced navigation. This is useful if you have scripts which are expected to be executed on every enhanced navigation (ie. in-line scripts).
 
-## Example
+## Examples
 
-The following example is a standard Blazor page component which contains two ```<script>``` elements (in-line and external) which log a message to the browser console. In a standard Blazor Web Application these ```<script>``` elements would be ignored if the "example" page was requested after an "enhanced navigation" (ie. if a user initially loaded the "home" page and then navigated to the "example" page). Blazor Script Reload will ensure that these scripts are always executed as expected. You can test the difference in behavior by modifying the data-reload attribute value on the ```<script>``` elements and observing the results.
+The example below is a standard Blazor page component which contains two ```<script>``` elements (in-line and external) which log a message to the browser console. In a standard Blazor Web Application these ```<script>``` elements would be ignored if the "example" page was requested after an "enhanced navigation" (ie. if a user initially loaded the "home" page and then navigated to the "example" page). Blazor Script Reload will ensure that these scripts are always executed as expected. You can test the difference in behavior by modifying the data-reload attribute value on the ```<script>``` elements and observing the results.
 
-_Example.razor_
+_Example1.razor_
 ```
-@page "/example"
-
-<PageTitle>Example</PageTitle>
+@page "/example1"
 
 <script data-reload="always">console.log('Inline Script');</script>
 <script src="Example.js" data-reload="always"></script>
 
 ```
-_Example.js_
+_Example1.js_
 
 ```
 console.log('External Script');
+```
+
+The example below is a standard Blazor page component which contains three ```<script>``` elements. The first two are external JavaScript libraries (requiring integrity and crossorigin attributes for security) which only need to be loaded once. The third is a local script which displays a gallery of images and needs to be executed on every enhanced navigation to the page. Note that the third script is dependent upon the capabilities of the first two scripts and therefore needs to be loaded last. 
+
+```
+@page "/example2"
+
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" data-reload="once" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" data-reload="once" integrity="sha384-e3sbGkYzJZpi7OdZc2eUoj7saI8K/Qbn+kPTdWyUQloiKIc9HRH4RUWFVxTonzTg" crossorigin="anonymous"></script>
+<script src="gallery.js" data-reload="always"></script>
 ```
 
 Take a look at the `samples` folder in this repository for more advanced usage examples.
