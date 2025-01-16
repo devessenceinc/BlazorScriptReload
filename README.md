@@ -64,7 +64,7 @@ _Example1.razor_
 @page "/example1"
 
 <script data-reload="always">console.log('Inline Script');</script>
-<script src="Example.js" data-reload="always"></script>
+<script src="Example1.js" data-reload="always"></script>
 
 ```
 _Example1.js_
