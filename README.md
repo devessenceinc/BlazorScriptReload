@@ -26,11 +26,11 @@ Utilizes a custom HTML element which interacts with the Blazor "enhancedload" ev
 
 ## Integration
 
-- include the BlazorScriptReload Nuget package into your project:
+- include the latest BlazorScriptReload Nuget package into your project:
 
 ```
 <ItemGroup>
-    <PackageReference Include="BlazorScriptReload" Version="1.0.1" />
+    <PackageReference Include="BlazorScriptReload" Version="1.0.2" />
 </ItemGroup>
 ```
 
