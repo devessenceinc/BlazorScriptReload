@@ -57,9 +57,9 @@ function reloadScripts() {
             let key = getKey(script);
 
             if (enhancedNavigation) {
-                // reload the script if data-reload is "always" or if the script has not been loaded previously and data-reload is "once" or "true" 
+                // reload the script if data-reload is "always" or "true"... or if the script has not been loaded previously and data-reload is "once"
                 let dataReload = script.getAttribute('data-reload');
-                if (dataReload === 'always' || (!scriptKeys.has(key) && (dataReload == 'once' || dataReload === 'true'))) {
+                if ((dataReload === 'always' || dataReload === 'true') || (!scriptKeys.has(key) && dataReload == 'once')) {
                     reloadScript(script);
                 }
             }
@@ -88,17 +88,13 @@ function reloadScript(script) {
             replaceScript(script);
         }
     } catch (error) {
-        if (script.src) {
-            console.error(`Blazor Script Reload failed to load external script: ${script.src}`, error);
-        } else {
-            console.error(`Blazor Script Reload failed to load inline script: ${script.innerHTML}`, error);
-        }
+        console.error(`Blazor Script Reload failed to load script: ${getKey(script)}`, error);
     }
 }
 
 function isValid(script) {
     if (script.innerHTML.includes('document.write(')) {
-        console.log(`Script using document.write() not supported by Blazor Script Reload: ${script.innerHTML}`);
+        console.log(`Blazor Script Reload does not support scripts using document.write(): ${script.innerHTML}`);
         return false;
     }
     return true;
