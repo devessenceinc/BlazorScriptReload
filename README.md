@@ -26,11 +26,11 @@ Utilizes a custom HTML element which interacts with the Blazor "enhancedload" ev
 
 ## Integration
 
-- include the BlazorScriptReload Nuget package into your project:
+- include the latest BlazorScriptReload Nuget package into your Blazor Web Application project:
 
 ```
 <ItemGroup>
-    <PackageReference Include="BlazorScriptReload" Version="1.0.1" />
+    <PackageReference Include="BlazorScriptReload" Version="1.0.2" />
 </ItemGroup>
 ```
 
@@ -51,28 +51,36 @@ Utilizes a custom HTML element which interacts with the Blazor "enhancedload" ev
 
 Standard ```<script>``` elements can be used in Blazor components or page content (including support for all standard attributes such as "type", "integrity", "crossorigin", etc...). However in order for a ```<script>``` element to be reloaded it MUST include a custom "**data-reload**" attribute:
 
-**data-reload="once" (or "true")** - indicates that the script element should only be reloaded during an enhanced navigation if it was not already loaded previously. This is useful for JavaScript libraries which only need to be loaded once and are then utilized by other JavaScript logic in your application.
+**data-reload="once" (or "true")** - indicates that the script element should be loaded during an enhanced navigation if it was not already loaded previously. This is useful for JavaScript libraries which only need to be loaded once and are then utilized by other JavaScript logic in your application.
 
 **data-reload="always"** - indicates that the script element should always be reloaded during an enhanced navigation. This is useful if you have scripts which are expected to be executed on every enhanced navigation (ie. in-line scripts).
 
-## Example
+## Examples
 
-The following example is a standard Blazor page component which contains two ```<script>``` elements (in-line and external) which log a message to the browser console. In a standard Blazor Web Application these ```<script>``` elements would be ignored if the "example" page was requested after an "enhanced navigation" (ie. if a user initially loaded the "home" page and then navigated to the "example" page). Blazor Script Reload will ensure that these scripts are always executed as expected. You can test the difference in behavior by modifying the data-reload attribute value on the ```<script>``` elements and observing the results.
+The example below is a standard Blazor page component which contains two ```<script>``` elements (in-line and external) which log a message to the browser console. In a standard Blazor Web Application these ```<script>``` elements would be ignored if the "example" page was requested after an "enhanced navigation" (ie. if a user initially loaded the "home" page and then navigated to the "example" page). Blazor Script Reload will ensure that these scripts are always executed as expected. You can test the difference in behavior by modifying the data-reload attribute value on the ```<script>``` elements and observing the results.
 
-_Example.razor_
+_Example1.razor_
 ```
-@page "/example"
-
-<PageTitle>Example</PageTitle>
+@page "/example1"
 
 <script data-reload="always">console.log('Inline Script');</script>
-<script src="Example.js" data-reload="always"></script>
+<script src="Example1.js" data-reload="always"></script>
 
 ```
-_Example.js_
+_Example1.js_
 
 ```
 console.log('External Script');
+```
+
+The example below is a standard Blazor page component which contains three ```<script>``` elements. The first two elements are external JavaScript libraries (requiring integrity and crossorigin attributes for security) which only need to be loaded once. The third element is a local script which displays a gallery of images and needs to be executed on every enhanced navigation to the page. Note that the third script is dependent upon the capabilities of the first two scripts and therefore needs to be loaded last. 
+
+```
+@page "/example2"
+
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" data-reload="once" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" data-reload="once" integrity="sha384-e3sbGkYzJZpi7OdZc2eUoj7saI8K/Qbn+kPTdWyUQloiKIc9HRH4RUWFVxTonzTg" crossorigin="anonymous"></script>
+<script src="gallery.js" data-reload="always"></script>
 ```
 
 Take a look at the `samples` folder in this repository for more advanced usage examples.
@@ -93,7 +101,7 @@ External scripts are identified using their "src" attribute. In-line scripts are
 
 This solution does not support _document.write_. This is because BlazorScriptReload executes after the page has been rendered, which means _document.write_ will overwrite the entire document's content. Note that standard Blazor Web Applications also do not support _document.write_ as it is ignored on enhanced navigations. So the recommended solution is to replace _document.write_ logic with alternatives which target specific DOM elements (see the BasicSample application for reference). 
 
-This solution does NOT support Interactive Blazor. Interactive Blazor uses a completely different approach for managing JavaScript integration (ie. JSInterop). Including ```<script>``` elements within your interactive components may result in JavaScript errors in blazor.web.js related to "There was an error applying batch", and therefore is not recommended.
+This solution does NOT support Interactive Blazor. Interactive Blazor uses a completely different approach for managing JavaScript integration (ie. JSInterop). Including ```<script>``` elements within your interactive components may result in JavaScript errors in blazor.web.js related to "There was an error applying batch", and therefore is not recommended. The BasicSample project includes an Interactive page to demonstrate that BlazorScriptReload does not interfere with JS Interop.
 
 This solution is not intended to solve every challenge related to JavaScript and Blazor Web Applications. There are scenarios where this solution is not appropriate and developers will need to explore alternative solutions such as [Blazor Page Script](https://github.com/MackinnonBuck/blazor-page-script) or [BlazorJsComponents](https://github.com/MackinnonBuck/blazor-js-components).
 
