@@ -30,7 +30,7 @@ Utilizes a custom HTML element which interacts with the Blazor "enhancedload" ev
 
 ```
 <ItemGroup>
-    <PackageReference Include="BlazorScriptReload" Version="1.0.2" />
+    <PackageReference Include="BlazorScriptReload" Version="1.0.3" />
 </ItemGroup>
 ```
 
