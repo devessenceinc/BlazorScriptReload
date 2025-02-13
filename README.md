@@ -101,7 +101,7 @@ This solution DOES support Stream Rendering however due to the fact that Stream 
 
 This solution DOES support Interactive components within Static Blazor Web Applications. The BasicSample project includes an Interactive page to demonstrate that BlazorScriptReload supports interactive components.
 
-This solution does NOT support Globally Interactive Blazor Application. Interactive Blazor uses a completely different approach for managing JavaScript integration (ie. JSInterop). Including ```<script>``` elements within your interactive components may result in JavaScript errors in blazor.web.js related to "There was an error applying batch", and therefore is not recommended. The BasicSample project includes an Interactive page to demonstrate that BlazorScriptReload does not interfere with JS Interop.
+This solution does NOT support Globally Interactive Blazor Applications. Globally Interactive Blazor Applications use a completely different approach for managing JavaScript integration (ie. JS Interop). 
 
 This solution does NOT support _document.write_. This is because BlazorScriptReload executes after the page has been rendered, which means _document.write_ will overwrite the entire document's content. Note that standard Blazor Web Applications also do not support _document.write_ as it is ignored on enhanced navigations. So the recommended solution is to replace _document.write_ logic with alternatives which target specific DOM elements (see the BasicSample application for reference). 
 
