@@ -46,9 +46,6 @@ function onEnhancedLoad() {
 }
 
 function reloadScripts() {
-    // determine if this is an initial request
-    let initialRequest = scriptKeys.size === 0;
-
     // iterate over all script elements in document
     const scripts = document.getElementsByTagName('script');
     for (const script of Array.from(scripts)) {
@@ -56,12 +53,10 @@ function reloadScripts() {
         if (script.hasAttribute('data-reload')) {
             let key = getKey(script);
 
-            if (!initialRequest) {
-                // reload the script if data-reload is "always" or "true"... or if the script has not been loaded previously and data-reload is "once"
-                let dataReload = script.getAttribute('data-reload');
-                if ((dataReload === 'always' || dataReload === 'true') || (!scriptKeys.has(key) && dataReload == 'once')) {
-                    reloadScript(script);
-                }
+            // reload the script if data-reload is "always" or "true"... or if the script has not been loaded previously and data-reload is "once"
+            let dataReload = script.getAttribute('data-reload');
+            if ((dataReload === 'always' || dataReload === 'true') || (!scriptKeys.has(key) && dataReload == 'once')) {
+                reloadScript(script);
             }
 
             // save the script key
@@ -110,6 +105,7 @@ function injectScript(script) {
                 newScript.setAttribute(script.attributes[i].name, script.attributes[i].value);
             }
         }
+        newScript.nonce = script.nonce; // must be referenced explicitly
         newScript.innerHTML = script.innerHTML;
 
         // dynamically injected scripts cannot be async or deferred
