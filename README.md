@@ -80,7 +80,7 @@ The example below is a standard Blazor page component which contains three ```<s
 
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" data-reload="once" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" data-reload="once" integrity="sha384-e3sbGkYzJZpi7OdZc2eUoj7saI8K/Qbn+kPTdWyUQloiKIc9HRH4RUWFVxTonzTg" crossorigin="anonymous"></script>
-<script src="gallery.js" data-reload="always"></script>
+<script src="gallery.js" data-reload="always" defer></script>
 ```
 
 Take a look at the `samples` folder in this repository for more advanced usage examples.
