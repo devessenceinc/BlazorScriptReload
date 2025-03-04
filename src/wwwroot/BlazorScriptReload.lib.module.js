@@ -29,6 +29,7 @@ export function afterWebStarted(blazor) {
     // define custom element
     customElements.define('script-reload', class extends HTMLElement {
         connectedCallback() {
+            processScripts(false);
             scriptReloadEnabled = true;
         }    
         disconnectedCallback() {
@@ -41,11 +42,11 @@ export function afterWebStarted(blazor) {
 
 function onEnhancedLoad() {
     if (scriptReloadEnabled) {
-        reloadScripts();
+        processScripts(true);
     }
 }
 
-function reloadScripts() {
+function processScripts(enhancedNavigation) {
     // iterate over all script elements in document
     const scripts = document.getElementsByTagName('script');
     for (const script of Array.from(scripts)) {
@@ -53,10 +54,13 @@ function reloadScripts() {
         if (script.hasAttribute('data-reload')) {
             let key = getKey(script);
 
-            // reload the script if data-reload is "always" or "true"... or if the script has not been loaded previously and data-reload is "once"
-            let dataReload = script.getAttribute('data-reload');
-            if ((dataReload === 'always' || dataReload === 'true') || (!scriptKeys.has(key) && dataReload == 'once')) {
-                reloadScript(script);
+            // on enhanced navigations
+            if (enhancedNavigation) {
+                // reload the script if data-reload is "always" or "true"... or if the script has not been loaded previously and data-reload is "once"
+                let dataReload = script.getAttribute('data-reload');
+                if ((dataReload === 'always' || dataReload === 'true') || (!scriptKeys.has(key) && dataReload == 'once')) {
+                    reloadScript(script);
+                }
             }
 
             // save the script key
