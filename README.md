@@ -6,6 +6,8 @@ Blazor Web Applications (ie. Static Server-Side Blazor using Enhanced Navigation
 
 This project provides a simple solution for allowing ```<script>``` elements to behave in a standard manner in a Blazor Web Application. It was inspired by the [BlazorPageScript](https://github.com/MackinnonBuck/blazor-page-script) project created by Mackinnon Buck however it takes a different approach.
 
+Note that this project is explained in more detail in the following webinar recording: https://youtu.be/SNzAHzXyqiI
+
 ## Goals
 
 - allow developers to use standard ```<script>``` elements in their Blazor Web Application components
